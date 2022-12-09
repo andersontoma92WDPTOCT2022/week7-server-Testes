@@ -27,6 +27,7 @@ registroRoute.post('/create-registro/:idCidadao', async (req, res) => {
     const cidadaoUpdated = await CidadaoModel.findByIdAndUpdate(
       idCidadao,
       {
+        status: 'aguardando',
         $push: {
           acessos: { $each: [newRegistro._id], $position: 0 },
         },
