@@ -30,7 +30,7 @@ const cidadaoSchema = new Schema(
 
     img: { type: String },
 
-    noLocal: { Boolean: String, default: false },
+    noLocal: { type: Boolean, default: false },
 
     status: {
       type: String,

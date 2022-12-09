@@ -6,10 +6,9 @@ import isAuth from '../middlewares/isAuth.js';
 const registroRoute = express.Router();
 //
 // nova entrada
-// !gerar senha
-// ? {hora}
-// ! reincluir isAuth
-registroRoute.post('/create-registro/:idCidadao', async (req, res) => {
+//
+//
+registroRoute.post('/create-registro/:idCidadao', isAuth, async (req, res) => {
   try {
     const { idCidadao } = req.params;
     //
@@ -62,8 +61,8 @@ registroRoute.post('/create-registro/:idCidadao', async (req, res) => {
 
 //
 // ! saida
-// ! reincluir isAuth
-registroRoute.put('/saida/:idCidadao', async (req, res) => {
+//
+registroRoute.put('/saida/:idCidadao', isAuth, async (req, res) => {
   try {
     const { idCidadao } = req.params;
     const horaSaida = req.body.saida;
@@ -111,8 +110,8 @@ registroRoute.put('/saida/:idCidadao', async (req, res) => {
 //
 //
 // ! status
-// ! reincluir isAuth
-registroRoute.put('/status/:idCidadao', async (req, res) => {
+//
+registroRoute.put('/status/:idCidadao', isAuth, async (req, res) => {
   try {
     const { idCidadao } = req.params;
     const horaSaida = req.body.saida;

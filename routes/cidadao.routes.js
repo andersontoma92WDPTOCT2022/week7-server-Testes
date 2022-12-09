@@ -9,14 +9,14 @@ import isAdmin from '../middlewares/isAdmin.js';
 import CidadaoModel from '../model/cidadao.model.js';
 const cidadaoRoute = express.Router();
 //
-// ! reincluir isAuth
 // ! sort acessibilidade, mudar 'nenhuma'-> " - "
-cidadaoRoute.get('/all-cidadaos', async (req, res) => {
+//
+cidadaoRoute.get('/all-cidadaos', isAuth, async (req, res) => {
   try {
     const filter = {};
     const projection = {};
     const sort = {
-      noLocal: 1,
+      noLocal: -1,
       updatedAt: -1,
     };
 
@@ -44,13 +44,12 @@ cidadaoRoute.post('/create-cidadao/', async (req, res) => {
 });
 //
 //
-// ! reincluir isAuth
-//! testar rota
-cidadaoRoute.get('oneCidadao/:cidadaoId', async (req, res) => {
+// //
+cidadaoRoute.get('/oneCidadao/:cidadaoId', isAuth, async (req, res) => {
   try {
-    const { cidadoId } = req.params;
+    const { cidadaoId } = req.params;
 
-    const cidadao = await CidadaoModel.findById(cidadoId);
+    const cidadao = await CidadaoModel.findById(cidadaoId);
 
     return res.status(200).json(cidadao);
   } catch (error) {
