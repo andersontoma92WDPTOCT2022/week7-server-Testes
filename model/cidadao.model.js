@@ -28,7 +28,11 @@ const cidadaoSchema = new Schema(
 
     profissao: {},
 
-    img: { type: String },
+    img: {
+      type: String,
+      default:
+        'https://images.freeimages.com/clg/images/40/408717/buddy-icon-symbol-clip-art_p.jpg',
+    },
 
     noLocal: { type: Boolean, default: false },
 

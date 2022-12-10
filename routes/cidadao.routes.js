@@ -13,16 +13,19 @@ const cidadaoRoute = express.Router();
 //
 cidadaoRoute.get('/all-cidadaos', isAuth, async (req, res) => {
   try {
+    // ? const noLocal = 'noLocal';
     const filter = {};
-    const projection = {};
+    const projection = { createdAt: 0 };
     const sort = {
-      noLocal: -1,
-      updatedAt: -1,
+      updatedAt: 1,
     };
 
-    const cidadaos = await CidadaoModel.find({ projection, sort }).populate(
-      'acessos'
-    );
+    const cidadaos = await CidadaoModel.find({
+      projection,
+      sort,
+    }).populate('acessos');
+
+    //console.log(cidadaos, 'cidadaos');
 
     return res.status(200).json(cidadaos);
   } catch (error) {
